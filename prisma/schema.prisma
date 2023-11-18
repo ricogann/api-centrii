@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  email     String   @unique
+  password  String
+  gender    String?
+  phone     String?
+  profile   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Mitra {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  email     String   @unique
+  password  String
+  address   String?
+  rating    Int?
+  phone     String?
+  profile   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Balance {
+  id        Int      @id @default(autoincrement())
+  refId     String
+  mitraId   Int
+  balance   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Transaction {
+  id        Int      @id @default(autoincrement())
+  invoice   String
+  userId    Int
+  mitraId   Int
+  date      DateTime
+  service   String
+  total_shoes String
+  price       Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Service {
+  id        Int      @id @default(autoincrement())
+  mitraId   Int
+  name      String
+  description String
+  price     Int
+  rating    Int?
+  photo     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Booking {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  mitraId   Int
+  serviceId Int
+  date      DateTime
+  finish    DateTime
+  service   String
+  total_shoes String
+  price       Int
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
