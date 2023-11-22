@@ -18,6 +18,7 @@ model User {
   gender    String?
   phone     String?
   profile   String?
+  status    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -31,6 +32,16 @@ model Mitra {
   rating    Int?
   phone     String?
   profile   String?
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  username  String   @unique
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -73,7 +84,7 @@ model Booking {
   id        Int      @id @default(autoincrement())
   userId    Int
   mitraId   Int
-  serviceId Int
+  serviceId String
   date      DateTime
   finish    DateTime
   service   String
