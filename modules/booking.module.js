@@ -32,11 +32,11 @@ class Booking {
                     userId: body.userId,
                     mitraId: body.mitraId,
                     serviceId: body.serviceId,
-                    date: body.date,
-                    finish: body.finish,
+                    date: new Date(body.date),
+                    finish: new Date(body.finish),
                     service: body.service,
                     total_shoes: body.total_shoes,
-                    price: body.price,
+                    price: Number(body.price),
                     status: status.BOOKING_PENDING,
                 },
             });
@@ -55,10 +55,7 @@ class Booking {
         try {
             const booking = await prisma.booking.findMany({
                 where: {
-                    userId: id,
-                },
-                include: {
-                    mitra: true,
+                    userId: Number(id),
                 },
             });
 
@@ -76,10 +73,7 @@ class Booking {
         try {
             const booking = await prisma.booking.findMany({
                 where: {
-                    mitraId: id,
-                },
-                include: {
-                    user: true,
+                    mitraId: Number(id),
                 },
             });
 
@@ -111,7 +105,7 @@ class Booking {
         try {
             const booking = await prisma.booking.update({
                 where: {
-                    id,
+                    id: Number(id),
                 },
                 data: {
                     status: status.BOOKING_WORKING,
@@ -136,7 +130,7 @@ class Booking {
         try {
             const booking = await prisma.booking.update({
                 where: {
-                    id,
+                    id: Number(id),
                 },
                 data: {
                     status: status.BOOKING_DONE,
@@ -161,7 +155,7 @@ class Booking {
         try {
             const booking = await prisma.booking.delete({
                 where: {
-                    id,
+                    id: Number(id),
                 },
             });
 
