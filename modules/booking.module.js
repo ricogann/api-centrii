@@ -51,11 +51,129 @@ class Booking {
         }
     };
 
-    getBooking = async (body) => {};
+    getBookingByUser = async (id) => {
+        try {
+            const booking = await prisma.booking.findMany({
+                where: {
+                    userId: id,
+                },
+                include: {
+                    mitra: true,
+                },
+            });
 
-    getBookingById = async (body) => {};
+            return { status: true, code: 200, data: booking };
+        } catch (error) {
+            console.error("booking module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
 
-    deleteBooking = async (body) => {};
+    getBookingByMitra = async (id) => {
+        try {
+            const booking = await prisma.booking.findMany({
+                where: {
+                    mitraId: id,
+                },
+                include: {
+                    user: true,
+                },
+            });
+
+            return { status: true, code: 200, data: booking };
+        } catch (error) {
+            console.error("booking module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
+
+    getBooking = async (body) => {
+        try {
+            const booking = await prisma.booking.findMany({});
+
+            return { status: true, code: 200, data: booking };
+        } catch (error) {
+            console.error("booking module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
+
+    updateStatusBookingAccepted = async (id) => {
+        try {
+            const booking = await prisma.booking.update({
+                where: {
+                    id,
+                },
+                data: {
+                    status: status.BOOKING_WORKING,
+                },
+            });
+
+            return {
+                status: true,
+                code: 200,
+                message: "Booking Accepted, Now your booking is on queue",
+            };
+        } catch (error) {
+            console.error("booking module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
+
+    updateStatusBookingDone = async (id) => {
+        try {
+            const booking = await prisma.booking.update({
+                where: {
+                    id,
+                },
+                data: {
+                    status: status.BOOKING_DONE,
+                },
+            });
+
+            return {
+                status: true,
+                code: 200,
+                message: "Booking Done, Thank you for using our service",
+            };
+        } catch (error) {
+            console.error("booking module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
+
+    deleteBooking = async (id) => {
+        try {
+            const booking = await prisma.booking.delete({
+                where: {
+                    id,
+                },
+            });
+
+            return { status: true, code: 200, message: "Booking Deleted" };
+        } catch (error) {
+            console.error("booking module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
 }
 
 module.exports = new Booking();

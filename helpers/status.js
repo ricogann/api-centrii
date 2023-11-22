@@ -9,4 +9,7 @@ module.exports = {
     PENDING,
     DATA_NOT_FULFILLED,
     ACCEPTED,
+    BOOKING_PENDING,
+    BOOKING_WORKING,
+    BOOKING_DONE,
 };
