@@ -232,6 +232,30 @@ class Service {
             };
         }
     };
+
+    getFilteredService = async () => {
+        try {
+            const service = await prisma.service.findMany();
+
+            const filteredService = service.reduce((acc, curr) => {
+                const existingService = acc.find((s) => s.name === curr.name);
+                if (existingService) {
+                    existingService.id.push(curr.mitraId);
+                } else {
+                    acc.push({ id: [curr.mitraId], name: curr.name });
+                }
+                return acc;
+            }, []);
+
+            return { status: true, code: 200, data: filteredService };
+        } catch (error) {
+            console.error("service module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
 }
 
 module.exports = new Service();

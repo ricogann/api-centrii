@@ -35,6 +35,13 @@ class Auth {
                 return { status: false, error: "Email not found" };
             }
 
+            if (checkEmail.status === status.PENDING) {
+                return {
+                    status: false,
+                    error: "Your account is not active, please contact admin",
+                };
+            }
+
             const checkPassword = bcrypt.compareSync(
                 body.password,
                 checkEmail.password

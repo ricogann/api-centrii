@@ -37,6 +37,17 @@ model Mitra {
   updatedAt DateTime @updatedAt
 }
 
+model Promo {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  code      String   @unique
+  percent   Int
+  photo     String?
+  expired   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Admin {
   id        Int      @id @default(autoincrement())
   name      String?

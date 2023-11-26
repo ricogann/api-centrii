@@ -30,4 +30,16 @@ userController.delete("/delete/:id", async (req, res) => {
     return response.sendResponse(res, result);
 });
 
+userController.put("/update/status/user/:id", async (req, res) => {
+    const result = await m$user.updateStatusUser(req.params.id);
+
+    return response.sendResponse(res, result);
+});
+
+userController.put("/update/status/mitra/:id", async (req, res) => {
+    const result = await m$user.updateStatusMitra(req.params.id);
+
+    return response.sendResponse(res, result);
+});
+
 module.exports = userController;

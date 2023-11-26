@@ -102,6 +102,56 @@ class User {
             };
         }
     };
+
+    updateStatusUser = async (id) => {
+        try {
+            const user = await prisma.user.update({
+                where: {
+                    id: parseInt(id),
+                },
+                data: {
+                    status: status.DATA_NOT_FULFILLED,
+                },
+            });
+
+            return {
+                status: true,
+                code: 200,
+                message: "Update status success",
+            };
+        } catch (error) {
+            console.error("user module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
+
+    updateStatusMitra = async (id) => {
+        try {
+            const user = await prisma.mitra.update({
+                where: {
+                    id: parseInt(id),
+                },
+                data: {
+                    status: status.DATA_NOT_FULFILLED,
+                },
+            });
+
+            return {
+                status: true,
+                code: 200,
+                message: "Update status success",
+            };
+        } catch (error) {
+            console.error("mitra module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
 }
 
 module.exports = new User();

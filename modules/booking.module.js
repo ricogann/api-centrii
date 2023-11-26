@@ -87,6 +87,28 @@ class Booking {
         }
     };
 
+    getRecentBookingUser = async (id) => {
+        try {
+            const booking = await prisma.booking.findMany({
+                where: {
+                    userId: Number(id),
+                },
+                orderBy: {
+                    createdAt: "desc",
+                },
+                take: 1,
+            });
+
+            return { status: true, code: 200, data: booking };
+        } catch (error) {
+            console.error("booking module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
+
     getBooking = async (body) => {
         try {
             const booking = await prisma.booking.findMany({});

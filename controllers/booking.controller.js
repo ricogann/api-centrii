@@ -47,4 +47,10 @@ bookingController.delete("/delete/:id", async (req, res) => {
     return response.sendResponse(res, result);
 });
 
+bookingController.get("/recent/:id", async (req, res) => {
+    const result = await m$booking.getRecentBookingUser(req.params.id);
+
+    return response.sendResponse(res, result);
+});
+
 module.exports = bookingController;

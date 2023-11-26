@@ -50,4 +50,10 @@ serviceController.put("/update/rating/:id", async (req, res) => {
     return response.sendResponse(res, result);
 });
 
+serviceController.get("/data/filtered", async (req, res) => {
+    const result = await m$service.getFilteredService();
+
+    return response.sendResponse(res, result);
+});
+
 module.exports = serviceController;
