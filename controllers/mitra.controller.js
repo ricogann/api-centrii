@@ -1,4 +1,4 @@
-const m$mitra = require("../modules/user.module");
+const m$mitra = require("../modules/mitra.module");
 const upload = require("../middlewares/multer");
 const response = require("../helpers/response");
 
