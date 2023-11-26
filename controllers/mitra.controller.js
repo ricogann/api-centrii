@@ -18,8 +18,8 @@ mitraController.get("/:id", async (req, res) => {
     return response.sendResponse(res, result);
 });
 
-mitraController.put("/update/:id", async (req, res) => {
-    const result = await m$mitra.updateMitra(req.params.id, req.body);
+mitraController.put("/update/:id", upload.single("photo"), async (req, res) => {
+    const result = await m$mitra.updateMitra(req.params.id, req.body, req.file);
 
     return response.sendResponse(res, result);
 });

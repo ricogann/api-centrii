@@ -43,7 +43,6 @@ class Mitra {
                 email: Joi.string().email().required(),
                 phone: Joi.string().required(),
                 address: Joi.string().required(),
-                photo: Joi.string().required(),
             });
 
             const { error } = schema.validate(body);
@@ -70,7 +69,7 @@ class Mitra {
                     email: body.email,
                     phone: body.phone,
                     address: body.address,
-                    photo: photo,
+                    profile: photo,
                 },
             });
 
