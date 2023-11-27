@@ -56,4 +56,10 @@ serviceController.get("/data/filtered", async (req, res) => {
     return response.sendResponse(res, result);
 });
 
+serviceController.get("/mitra/:id", async (req, res) => {
+    const result = await m$service.getServiceByMitraId(req.params.id);
+
+    return response.sendResponse(res, result);
+});
+
 module.exports = serviceController;

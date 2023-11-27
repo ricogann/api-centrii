@@ -256,6 +256,24 @@ class Service {
             };
         }
     };
+
+    getServiceByMitraId = async (id) => {
+        try {
+            const service = await prisma.service.findMany({
+                where: {
+                    mitraId: parseInt(id),
+                },
+            });
+
+            return { status: true, code: 200, data: service };
+        } catch (error) {
+            console.error("service module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
 }
 
 module.exports = new Service();
