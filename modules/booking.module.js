@@ -37,11 +37,11 @@ class Booking {
                     service: body.service,
                     total_shoes: body.total_shoes,
                     price: Number(body.price),
-                    status: status.BOOKING_PENDING,
+                    status: status.BELUM_BAYAR,
                 },
             });
 
-            return { status: true, code: 200, message: "Booking Success" };
+            return { status: true, code: 200, message: "Booking Success", data: booking };
         } catch (error) {
             console.error("booking module Error: ", error);
             return {
