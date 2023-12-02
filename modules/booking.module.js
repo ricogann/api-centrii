@@ -185,6 +185,17 @@ class Booking {
                 },
             });
 
+            const balance = await prisma.balance.update({
+                where: {
+                    userId: Number(booking.userId),
+                },
+                data: {
+                    balance: {
+                        increment: Number(booking.price),
+                    },
+                },
+            });
+
             return {
                 status: true,
                 code: 200,
