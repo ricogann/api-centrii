@@ -187,7 +187,7 @@ class Booking {
 
             const balance = await prisma.balance.update({
                 where: {
-                    userId: Number(booking.userId),
+                    id: Number(booking.mitraId),
                 },
                 data: {
                     balance: {
