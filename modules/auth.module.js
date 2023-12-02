@@ -297,6 +297,14 @@ class Auth {
                 },
             });
 
+            const createBalance = await prisma.balance.create({
+                data: {
+                    refId: 0,
+                    balance: 0,
+                    mitraId: createMitra.id,
+                },
+            });
+
             if (!createMitra) {
                 return { status: false, error: "Failed to create user" };
             }
