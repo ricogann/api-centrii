@@ -5,6 +5,7 @@ const mitraController = require("./controllers/mitra.controller");
 const userController = require("./controllers/user.controller");
 const promoController = require("./controllers/promo.controller");
 const midtransController = require("./controllers/midtrans.controller");
+const balanceController = require("./controllers/balance.controller");
 
 const routes = (app) => {
     const _routes = [
@@ -15,6 +16,7 @@ const routes = (app) => {
         ["user", userController],
         ["promo", promoController],
         ["midtrans", midtransController],
+        ["balance", balanceController],
     ];
     _routes.forEach((route) => {
         const [url, controller] = route;
