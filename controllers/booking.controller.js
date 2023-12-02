@@ -41,6 +41,12 @@ bookingController.put("/update/done/:id", async (req, res) => {
     return response.sendResponse(res, result);
 });
 
+bookingController.put("/update/status/bayar/:id", async (req,res) => {
+    const result = await m$booking.updateStatusBayar(req.params.id);
+
+    return response.sendResponse(res, result);
+});
+
 bookingController.delete("/delete/:id", async (req, res) => {
     const result = await m$booking.deleteBooking(req.params.id);
 

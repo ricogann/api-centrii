@@ -51,6 +51,27 @@ class Booking {
         }
     };
 
+    updateStatusBayar = async (id) => {
+	try {
+	    const booking = await prisma.booking.update({
+		where: {
+		   id: Number(id),
+		},
+		data: {
+		   status: status.BOOKING_PENDING,
+		}
+	    });
+	    console.log(booking);
+	    return { status: true, code: 200, message: "Success" }
+	} catch (error) {
+	    console.error("update module Error:", error);
+	    return {
+		status: false,
+		error,
+	    }
+	}
+    };
+
     getBookingByUser = async (id) => {
         try {
             const booking = await prisma.booking.findMany({
