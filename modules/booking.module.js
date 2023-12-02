@@ -41,7 +41,12 @@ class Booking {
                 },
             });
 
-            return { status: true, code: 200, message: "Booking Success", data: booking };
+            return {
+                status: true,
+                code: 200,
+                message: "Booking Success",
+                data: booking,
+            };
         } catch (error) {
             console.error("booking module Error: ", error);
             return {
@@ -52,24 +57,24 @@ class Booking {
     };
 
     updateStatusBayar = async (id) => {
-	try {
-	    const booking = await prisma.booking.update({
-		where: {
-		   id: Number(id),
-		},
-		data: {
-		   status: status.BOOKING_PENDING,
-		}
-	    });
-	    console.log(booking);
-	    return { status: true, code: 200, message: "Success" }
-	} catch (error) {
-	    console.error("update module Error:", error);
-	    return {
-		status: false,
-		error,
-	    }
-	}
+        try {
+            const booking = await prisma.booking.update({
+                where: {
+                    id: Number(id),
+                },
+                data: {
+                    status: status.BOOKING_PENDING,
+                },
+            });
+            console.log(booking);
+            return { status: true, code: 200, message: "Success" };
+        } catch (error) {
+            console.error("update module Error:", error);
+            return {
+                status: false,
+                error,
+            };
+        }
     };
 
     getBookingByUser = async (id) => {
@@ -199,6 +204,24 @@ class Booking {
             const booking = await prisma.booking.delete({
                 where: {
                     id: Number(id),
+                },
+            });
+
+            return { status: true, code: 200, message: "Booking Deleted" };
+        } catch (error) {
+            console.error("booking module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
+
+    deleteBookingBelumBayar = async () => {
+        try {
+            const booking = await prisma.booking.deleteMany({
+                where: {
+                    status: status.BELUM_BAYAR,
                 },
             });
 

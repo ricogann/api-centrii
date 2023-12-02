@@ -41,7 +41,7 @@ bookingController.put("/update/done/:id", async (req, res) => {
     return response.sendResponse(res, result);
 });
 
-bookingController.put("/update/status/bayar/:id", async (req,res) => {
+bookingController.put("/update/status/bayar/:id", async (req, res) => {
     const result = await m$booking.updateStatusBayar(req.params.id);
 
     return response.sendResponse(res, result);
@@ -55,6 +55,12 @@ bookingController.delete("/delete/:id", async (req, res) => {
 
 bookingController.get("/recent/:id", async (req, res) => {
     const result = await m$booking.getRecentBookingUser(req.params.id);
+
+    return response.sendResponse(res, result);
+});
+
+bookingController.delete("/deleteBelumBayar", async (req, res) => {
+    const result = await m$booking.deleteBookingBelumBayar();
 
     return response.sendResponse(res, result);
 });
