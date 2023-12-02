@@ -258,6 +258,8 @@ class Auth {
                 name: Joi.string().required(),
                 email: Joi.string().required(),
                 password: Joi.string().required(),
+                address: Joi.string(),
+                phone: Joi.string(),
             }).options({ abortEarly: false });
 
             const validation = schema.validate(body);
@@ -289,6 +291,8 @@ class Auth {
                     email: body.email,
                     password: hashPassword,
                     name: body.name,
+                    address: body.address,
+                    phone: body.phone,
                     status: status.PENDING,
                 },
             });
