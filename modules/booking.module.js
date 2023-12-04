@@ -254,7 +254,7 @@ class Booking {
                     status: status.BOOKING_WORKING,
                 },
             });
-
+            console.log(booking);
             for (let i = 0; i < booking.length; i++) {
                 const element = booking[i];
                 if (element.id == body.id) {
