@@ -245,6 +245,25 @@ class Booking {
             };
         }
     };
+
+    countBookingWorking = async (id) => {
+        try {
+            const booking = await prisma.booking.count({
+                where: {
+                    mitraId: Number(id),
+                    status: status.BOOKING_WORKING,
+                },
+            });
+
+            return { status: true, code: 200, data: booking };
+        } catch (error) {
+            console.error("booking module Error: ", error);
+            return {
+                status: false,
+                error,
+            };
+        }
+    };
 }
 
 module.exports = new Booking();
