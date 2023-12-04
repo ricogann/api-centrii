@@ -266,6 +266,11 @@ class Booking {
                     };
                 }
             }
+            return {
+                status: true,
+                code: 200,
+                data: 0,
+            };
         } catch (error) {
             console.error("booking module Error: ", error);
             return {
