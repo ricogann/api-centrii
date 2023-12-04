@@ -66,7 +66,7 @@ bookingController.delete("/deleteBelumBayar", async (req, res) => {
 });
 
 bookingController.get("/count/:id", async (req, res) => {
-    const result = await m$booking.countBookingWorking(req.params.id);
+    const result = await m$booking.countBookingWorking(req.params.id, req.body);
 
     return response.sendResponse(res, result);
 });

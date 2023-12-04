@@ -246,16 +246,25 @@ class Booking {
         }
     };
 
-    countBookingWorking = async (id) => {
+    countBookingWorking = async (id, body) => {
         try {
-            const booking = await prisma.booking.count({
+            const booking = await prisma.booking.findMany({
                 where: {
                     mitraId: Number(id),
                     status: status.BOOKING_WORKING,
                 },
             });
 
-            return { status: true, code: 200, data: booking };
+            for (let i = 0; i < booking.length; i++) {
+                const element = booking[i];
+                if (element.id == body.id) {
+                    return {
+                        status: true,
+                        code: 200,
+                        data: i + 1,
+                    };
+                }
+            }
         } catch (error) {
             console.error("booking module Error: ", error);
             return {
